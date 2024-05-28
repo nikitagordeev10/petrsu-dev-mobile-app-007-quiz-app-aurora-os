@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=dev
+Comment=A new Flutter project.
+Icon=com.example.know_karelia.dev
+Exec=/usr/bin/com.example.know_karelia.dev
+X-Nemo-Application-Type=silica-qt5
+
+[X-Application]
+Permissions=
+OrganizationName=com.example.know_karelia
+ApplicationName=dev
