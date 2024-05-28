@@ -2,12 +2,16 @@
 
 Это приложение для мобильных устройств под управлением ОС Android и ОС Аврора, созданное с использованием технологии Flutter и базы данных SQLite. Викторина о Карелии представляет собой интерактивную игру, которая предлагает пользователям узнать больше о регионе Карелии через ответы на вопросы.
 
-![image](https://github.com/nikitagordeev10/aurora_know_karelia/assets/91273732/be032546-f395-4f51-b729-ff22793c8142)
-![image](https://github.com/nikitagordeev10/aurora_know_karelia/assets/91273732/db8b634f-566d-4018-9ffe-a70b903b7b0d)
-![image](https://github.com/nikitagordeev10/aurora_know_karelia/assets/91273732/032b07e2-92f0-46bb-9f7c-355f96552e78)
-![image](https://github.com/nikitagordeev10/aurora_know_karelia/assets/91273732/f33574b9-2882-4191-8654-117e711854a0)
-![image](https://github.com/nikitagordeev10/aurora_know_karelia/assets/91273732/ebf74128-fe27-41b9-b802-dc7aeec2e1c4)
-![image](https://github.com/nikitagordeev10/aurora_know_karelia/assets/91273732/1e381838-5750-401c-ae0d-57031562cd79)
+<p align="center">
+  <img src="https://github.com/nikitagordeev10/aurora_know_karelia/assets/91273732/be032546-f395-4f51-b729-ff22793c8142" width="30%">
+  <img src="https://github.com/nikitagordeev10/aurora_know_karelia/assets/91273732/db8b634f-566d-4018-9ffe-a70b903b7b0d" width="30%">
+  <img src="https://github.com/nikitagordeev10/aurora_know_karelia/assets/91273732/032b07e2-92f0-46bb-9f7c-355f96552e78" width="30%">
+</p>
+<p align="center">
+  <img src="https://github.com/nikitagordeev10/aurora_know_karelia/assets/91273732/f33574b9-2882-4191-8654-117e711854a0" width="30%">
+  <img src="https://github.com/nikitagordeev10/aurora_know_karelia/assets/91273732/ebf74128-fe27-41b9-b802-dc7aeec2e1c4" width="30%">
+  <img src="https://github.com/nikitagordeev10/aurora_know_karelia/assets/91273732/1e381838-5750-401c-ae0d-57031562cd79" width="30%">
+</p>
 
 ### Цель приложения:
 Приложение создано для того, чтобы в игровой форме узнать больше о культуре, истории, природных достопримечательностях Карелии.
