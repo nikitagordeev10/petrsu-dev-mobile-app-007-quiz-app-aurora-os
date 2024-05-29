@@ -19,7 +19,7 @@ class AboutPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset('assets/guide/map_of_karelia.png'), // Изображение Карелии
+              Image.asset('db/guide/map_of_karelia.png'), // Изображение Карелии
               SizedBox(height: 20), // Пробел между изображением и текстом
               Text(
                 'Карелия — это регион на северо-западе России, который славится своими живописными озерами, густыми лесами и древними памятниками. '

@@ -13,9 +13,9 @@ class DatabaseService {
     String databasePath = join(await getDatabasesPath(), databaseName);
 
     // Проверка существования базы данных
-    if (await databaseExists(databasePath)) {
-      print("База данных уже существует");
-    } else {
+    // if (await databaseExists(databasePath)) {
+    //   print("База данных уже существует");
+    // } else {
       // Загрузка базы данных из assets
       ByteData data = await rootBundle.load("db/$databaseName");
       List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
@@ -23,7 +23,7 @@ class DatabaseService {
       // Копирование базы данных в нужное место
       await File(databasePath).writeAsBytes(bytes, flush: true);
       print("База данных скопирована из assets");
-    }
+    // }
 
     // Открытие базы данных
     return openDatabase(databasePath);

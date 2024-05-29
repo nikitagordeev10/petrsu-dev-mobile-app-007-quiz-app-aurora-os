@@ -166,7 +166,7 @@ class _ResultsPageState extends State<ResultsPage> {
                       child: Container(
                         height: 75,
                         child: Image.asset(
-                          "images/${widget.difficulty.toLowerCase()}/${flag.exhibitImage}",
+                          "db/images/${widget.difficulty.toLowerCase()}/${flag.exhibitImage}",
                         ),
                       ),
                     ),

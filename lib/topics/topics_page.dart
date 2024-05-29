@@ -2,7 +2,7 @@ import 'package:know_karelia/quiz/quiz_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:know_karelia/shared/bottom_navigation_bar.dart';
-import 'package:know_karelia/routes.dart';
+import 'package:know_karelia/services/routes.dart';
 
 class TopicPage extends StatefulWidget {
   const TopicPage({super.key});
@@ -41,11 +41,6 @@ class _TopicPageState extends State<TopicPage> {
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            // decoration: BoxDecoration(
-                // image: DecorationImage(
-              // image: AssetImage("images/back3.jpg"),
-              // fit: BoxFit.cover,
-            // )),
           ),
           SafeArea(
             child: Center(
@@ -68,7 +63,6 @@ class _TopicPageState extends State<TopicPage> {
                         ],
                         borderRadius: BorderRadius.circular(60),
                         color: Colors.transparent, // Transparent background
-                        // border: Border.all(color: Colors.black, width: 3),
                       ),
                       child: Column(
                         children: [

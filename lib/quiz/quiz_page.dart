@@ -245,7 +245,7 @@ class _GameState extends State<Game> {
           ],
         ),
         child: Image.asset(
-            "images/${widget.difficulty.toLowerCase()}/$exhibitImage"),
+            "db/images/${widget.difficulty.toLowerCase()}/$exhibitImage"),
         height: 230,
         width: 230,
       ),

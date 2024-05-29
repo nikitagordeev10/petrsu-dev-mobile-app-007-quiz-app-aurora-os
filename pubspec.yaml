@@ -52,12 +52,14 @@ flutter:
 
   # Добавление ассетов в приложение.
   assets:
+    - db/
+    - db/guide/
+    - db/avatars/
+    - db/images/
     - db/images/easy/
     - db/images/hard/
     - db/images/medium/
     - db/know_karelia.db
-    - db/guide/
-    - db/avatars/
     - assets/
     - assets/fonts/
     - assets/icon/
