@@ -9,11 +9,11 @@ import 'package:percent_indicator/percent_indicator.dart';
 // Этот класс определяет виджет игры
 class Game extends StatefulWidget {
   final double questionNumber; // Количество вопросов
-  final String difficulty; // Сложность игры
+  final String selectedDifficulty; // Сложность игры
   final int second; // Время на ответ в секундах
   final bool timeControl; // Управление временем
 
-  Game(this.questionNumber, this.difficulty, this.second, this.timeControl, {super.key});
+  Game(this.questionNumber, this.selectedDifficulty, this.second, this.timeControl, {super.key});
 
   @override
   State<Game> createState() => _GameState();
@@ -67,7 +67,7 @@ class _GameState extends State<Game> {
   // Получение вопросов
   Future<void> getQuestions() async {
     questions = await ExhibitsRepository().getRandomExhibits(
-        widget.difficulty, widget.questionNumber.toInt());
+        widget.selectedDifficulty, widget.questionNumber.toInt());
     await loadQuestions();
   }
 
@@ -78,7 +78,7 @@ class _GameState extends State<Game> {
     realTime = widget.second;
     trueQuestion = questions[questionNumber];
     wrongQuestions = await ExhibitsRepository().getRelatedExhibits(
-        widget.difficulty, trueQuestion.exhibitId);
+        widget.selectedDifficulty, trueQuestion.exhibitId);
 
     allAnswers
       ..clear()
@@ -129,7 +129,7 @@ class _GameState extends State<Game> {
         MaterialPageRoute(
           builder: (context) =>
               ResultsPage(questions, trueFalseAll, trueNumber, falseNumber,
-                  widget.difficulty),
+                  widget.selectedDifficulty),
         ),
       );
     }
@@ -245,7 +245,7 @@ class _GameState extends State<Game> {
           ],
         ),
         child: Image.asset(
-            "db/images/${widget.difficulty.toLowerCase()}/$exhibitImage"),
+            "db/images/${widget.selectedDifficulty.toLowerCase()}/$exhibitImage"),
         height: 230,
         width: 230,
       ),

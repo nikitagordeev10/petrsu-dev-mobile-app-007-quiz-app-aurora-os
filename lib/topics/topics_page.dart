@@ -1,9 +1,11 @@
+// Импортируем необходимые библиотеки и модули для Flutter приложения
 import 'package:know_karelia/quiz/quiz_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:know_karelia/shared/bottom_navigation_bar.dart';
 import 'package:know_karelia/services/routes.dart';
 
+// Определяем StatefulWidget для страницы тем
 class TopicPage extends StatefulWidget {
   const TopicPage({super.key});
 
@@ -11,23 +13,24 @@ class TopicPage extends StatefulWidget {
   State<TopicPage> createState() => _TopicPageState();
 }
 
+// Определяем состояние для страницы тем
 class _TopicPageState extends State<TopicPage> {
-  double zorluk = 2.0;
-  var difficulties = ["Easy", "Medium", "Hard"];
-  String difficulty = "Medium";
-  double question_number = 5.0;
-  double question_second = 10.0;
-  bool switchbutton = true;
+  double difficultyLevel = 2.0; // Значение уровня сложности по умолчанию
+  var difficultyOptions = ["Easy", "Medium", "Hard"]; // Список уровней сложности
+  String selectedDifficulty = "Medium"; // Выбранный уровень сложности по умолчанию
+  double numberOfQuestions = 5.0; // Количество вопросов по умолчанию
+  double secondsPerQuestion = 10.0; // Время на вопрос по умолчанию
+  bool isTimerEnabled = true; // Состояние переключателя времени
 
   @override
   Widget build(BuildContext context) {
-    var display_info = MediaQuery.of(context);
-    final double e_height = display_info.size.height;
-    final double e_width = display_info.size.width;
+    // Получаем информацию о дисплее
+    var displayInfo = MediaQuery.of(context);
+    final double screenHeight = displayInfo.size.height;
+    final double screenWidth = displayInfo.size.width;
 
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: Color(0xFF1AACBC),
         title: Text(
           "Викторина",
           textAlign: TextAlign.center, // Выравнивание текста по центру внутри AppBar
@@ -35,137 +38,160 @@ class _TopicPageState extends State<TopicPage> {
         centerTitle: true, // Устанавливаем центрирование заголовка
       ),
 
+      // Подключаем нижнюю навигационную панель
       bottomNavigationBar: BottomNavBar(),
       body: Stack(
         children: [
+          // Основной контейнер для установки размеров
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
           ),
           SafeArea(
+            // Центрируем содержимое
             child: Center(
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: e_height / 15, left: 13, right: 13),
+                    padding: EdgeInsets.only(top: screenHeight / 15, left: 13, right: 13),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                     child: Container(
+                      // Декорируем контейнер с параметрами викторины
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.transparent,
+                            color: Colors.transparent, // Прозрачная тень
                             offset: Offset(0, 4),
                             blurRadius: 2,
                             spreadRadius: 1,
                           ),
                         ],
                         borderRadius: BorderRadius.circular(60),
-                        color: Colors.transparent, // Transparent background
+                        color: Colors.transparent, // Прозрачный фон
                       ),
                       child: Column(
                         children: [
+                          // Отображаем текущий уровень сложности
                           Padding(
                             padding: const EdgeInsets.only(top: 20.0),
                             child: Text(
-                              "Уровень сложности = ${difficulty}",
+                              "Уровень сложности = $selectedDifficulty",
                               style: TextStyle(
-                                color: Colors.white, // White text color
-                                fontSize: e_width / 20,
+                                color: Colors.white, // Белый цвет текста
+                                fontSize: screenWidth / 20,
                                 fontFamily: "Ubuntu",
                               ),
                             ),
                           ),
+                          // Слайдер для выбора уровня сложности
                           Slider(
                             max: 3.0,
                             min: 1.0,
-                            value: zorluk,
+                            value: difficultyLevel,
                             activeColor: Color(0xff1AACBC),
                             inactiveColor: Colors.grey,
-                            onChanged: (double i) {
+                            onChanged: (double value) {
                               setState(() {
-                                zorluk = i.ceilToDouble();
-                                difficulty = difficulties[zorluk.toInt() - 1];
+                                difficultyLevel = value.ceilToDouble();
+                                selectedDifficulty = difficultyOptions[difficultyLevel.toInt() - 1];
                               });
                             },
                           ),
+                          // Отображаем текущее количество вопросов
                           Text(
-                            "Количество вопросов = ${question_number.toInt()}",
+                            "Количество вопросов = ${numberOfQuestions.toInt()}",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: e_width / 20,
+                              fontSize: screenWidth / 20,
                               fontFamily: "Ubuntu",
                             ),
                           ),
+                          // Слайдер для выбора количества вопросов
                           Slider(
                             max: 7.0,
                             min: 3.0,
-                            value: question_number,
+                            value: numberOfQuestions,
                             activeColor: Color(0xff1AACBC),
                             inactiveColor: Colors.grey,
-                            onChanged: (double i) {
+                            onChanged: (double value) {
                               setState(() {
-                                question_number = i.ceilToDouble();
+                                numberOfQuestions = value.ceilToDouble();
                               });
                             },
                           ),
+                          // Условное отображение времени на вопрос
                           Visibility(
-                            visible: switchbutton,
+                            visible: isTimerEnabled,
                             child: Text(
-                              "Секунд на вопрос = ${question_second.toInt()}",
+                              "Секунд на вопрос = ${secondsPerQuestion.toInt()}",
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: e_width / 20,
+                                fontSize: screenWidth / 20,
                                 fontFamily: "Ubuntu",
                               ),
                             ),
                           ),
+                          // Слайдер для выбора времени на вопрос
                           Visibility(
-                            visible: switchbutton,
+                            visible: isTimerEnabled,
                             child: Slider(
                               max: 13.0,
                               min: 7.0,
-                              value: question_second,
+                              value: secondsPerQuestion,
                               activeColor: Color(0xff1AACBC),
                               inactiveColor: Colors.grey,
-                              onChanged: (double i) {
+                              onChanged: (double value) {
                                 setState(() {
-                                  question_second = i.ceilToDouble();
+                                  secondsPerQuestion = value.ceilToDouble();
                                 });
                               },
                             ),
                           ),
+                          // Подпись для переключателя времени
                           Text(
                             "Время",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: e_width / 20,
+                              fontSize: screenWidth / 20,
                               fontFamily: "Ubuntu",
                             ),
                           ),
+                          // Переключатель времени
                           Switch(
-                            value: switchbutton,
+                            value: isTimerEnabled,
                             activeColor: Color(0xff1AACBC),
                             activeTrackColor: Color(0xffFFFFFF),
                             inactiveThumbColor: Colors.black54,
                             inactiveTrackColor: Colors.grey.shade400,
-                            onChanged: (veri) {
+                            onChanged: (bool value) {
                               setState(() {
-                                switchbutton = veri;
+                                isTimerEnabled = value;
                               });
                             },
                           ),
+                          // Кнопка для начала игры
                           InkWell(
                             onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => Game(question_number, difficulty, question_second.toInt(), switchbutton)));
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Game(
+                                    numberOfQuestions,
+                                    selectedDifficulty,
+                                    secondsPerQuestion.toInt(),
+                                    isTimerEnabled,
+                                  ),
+                                ),
+                              );
                             },
                             child: Container(
                               height: 50,
                               width: 150,
                               margin: EdgeInsets.all(20),
                               decoration: BoxDecoration(
-                                color: Color(0xff1AACBC), // Updated button color
+                                color: Color(0xff1AACBC), // Цвет кнопки
                                 borderRadius: BorderRadius.circular(20),
                                 boxShadow: [
                                   BoxShadow(
@@ -173,7 +199,7 @@ class _TopicPageState extends State<TopicPage> {
                                     offset: Offset(0, 4),
                                     blurRadius: 4,
                                     spreadRadius: 1,
-                                  )
+                                  ),
                                 ],
                               ),
                               child: Center(
@@ -182,7 +208,7 @@ class _TopicPageState extends State<TopicPage> {
                                   child: Text(
                                     "Начать",
                                     style: TextStyle(
-                                      fontSize: e_width / 20,
+                                      fontSize: screenWidth / 20,
                                       fontFamily: "Ubuntu",
                                       color: Colors.white,
                                     ),
@@ -190,7 +216,7 @@ class _TopicPageState extends State<TopicPage> {
                                 ),
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -198,8 +224,7 @@ class _TopicPageState extends State<TopicPage> {
                 ],
               ),
             ),
-          )
-
+          ),
         ],
       ),
     );

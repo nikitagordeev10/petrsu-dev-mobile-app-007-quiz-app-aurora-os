@@ -3,11 +3,11 @@ import 'package:know_karelia/services/database_service.dart'; // Импорти�
 
 class ExhibitsRepository {
   // Метод для получения случайных экспонатов по заданной сложности и количеству
-  Future<List<Exhibit>> getRandomExhibits(String difficulty, int number) async {
+  Future<List<Exhibit>> getRandomExhibits(String selectedDifficulty, int number) async {
     var database = await DatabaseService.openDatabaseConnection(); // Открываем соединение с базой данных
 
     // Выполняем запрос к базе данных для получения случайных экспонатов
-    List<Map<String, dynamic>> maps = await database.rawQuery("SELECT * FROM $difficulty ORDER BY RANDOM() LIMIT $number");
+    List<Map<String, dynamic>> maps = await database.rawQuery("SELECT * FROM $selectedDifficulty ORDER BY RANDOM() LIMIT $number");
 
     // Преобразуем результаты запроса в список объектов Exhibit
     return List.generate(maps.length, (index) {
@@ -17,11 +17,11 @@ class ExhibitsRepository {
   }
 
   // Метод для получения связанных экспонатов, исключая экспонат с заданным id
-  Future<List<Exhibit>> getRelatedExhibits(String difficulty, int id) async {
+  Future<List<Exhibit>> getRelatedExhibits(String selectedDifficulty, int id) async {
     var database = await DatabaseService.openDatabaseConnection(); // Открываем соединение с базой данных
 
     // Выполняем запрос к базе данных для получения связанных экспонатов
-    List<Map<String, dynamic>> maps = await database.rawQuery("SELECT * FROM $difficulty WHERE exhibitId != $id ORDER BY RANDOM() LIMIT 3");
+    List<Map<String, dynamic>> maps = await database.rawQuery("SELECT * FROM $selectedDifficulty WHERE exhibitId != $id ORDER BY RANDOM() LIMIT 3");
 
     // Преобразуем результаты запроса в список объектов Exhibit
     return List.generate(maps.length, (index) {

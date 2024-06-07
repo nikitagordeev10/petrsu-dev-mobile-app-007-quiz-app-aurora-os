@@ -7,9 +7,9 @@ class ResultsPage extends StatefulWidget {
   final List<bool> trueFalseAll; // Список правильных/неправильных ответов
   final int trueNumber; // Количество правильных ответов
   final int falseNumber; // Количество неправильных ответов
-  final String difficulty; // Уровень сложности викторины
+  final String selectedDifficulty; // Уровень сложности викторины
 
-  ResultsPage(this.questions, this.trueFalseAll, this.trueNumber, this.falseNumber, this.difficulty, {Key? key}) : super(key: key);
+  ResultsPage(this.questions, this.trueFalseAll, this.trueNumber, this.falseNumber, this.selectedDifficulty, {Key? key}) : super(key: key);
 
   @override
   State<ResultsPage> createState() => _ResultsPageState();
@@ -116,7 +116,7 @@ class _ResultsPageState extends State<ResultsPage> {
         child: ListView.builder(
           itemCount: widget.questions.length,
           itemBuilder: (context, index) {
-            var flag = widget.questions[index];
+            var exhibit = widget.questions[index];
             return Padding(
               padding: const EdgeInsets.only(top: 4, bottom: 4),
               child: Container(
@@ -153,7 +153,7 @@ class _ResultsPageState extends State<ResultsPage> {
                       ),
                     ),
                     Text(
-                      "${flag.exhibitName}",
+                      "${exhibit.exhibitName}",
                       style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width / 20,
                         fontFamily: "Ubuntu",
@@ -166,7 +166,7 @@ class _ResultsPageState extends State<ResultsPage> {
                       child: Container(
                         height: 75,
                         child: Image.asset(
-                          "db/images/${widget.difficulty.toLowerCase()}/${flag.exhibitImage}",
+                          "db/images/${widget.selectedDifficulty.toLowerCase()}/${exhibit.exhibitImage}",
                         ),
                       ),
                     ),
